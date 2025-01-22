@@ -1,8 +1,13 @@
 
 
-// implementation class
+// implementation class 
 
 class ModelInteger extends Observable {
+
+    //number: int
+    //plusDisabled: boolean
+    //minusDisabled: boolean
+    //disable: boolean
 
     constructor() {
         super();
@@ -20,6 +25,7 @@ class ModelInteger extends Observable {
         this.numberSet(this.number - 1);
     }
 
+    //function called when trying to change the number
     numberSet(number) {
         if ((number <= 10) && (number >= 0) && (!this.disabled)) {
             if (number == 0) {
@@ -42,12 +48,14 @@ class ModelInteger extends Observable {
         }
     }
 
+    //function called when disabling/enabling the modifications
     disable() {
         this.disabled = !this.disabled;
         this.setChanged();
         this.notifyObservers();
     }
 
+    //function called when trying to update the disabled value
     disabledSet(disabled) {
         if (this.disabled != disabled) {
             this.disabled = disabled;

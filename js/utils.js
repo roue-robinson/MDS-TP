@@ -1,17 +1,24 @@
 // utils classes
 
-
+// class defining an observable object, including most observers related attributes
 class Observable {
 
+  //observers : list[observer]
+  //state : boolean
+
   constructor() {
-    this.observers = []
-    this.state = false
+    this.observers = [];
+    this.state = false;
     }
   
   addObserver(observer) {
-    this.observers.push(observer)
+    this.observers.push(observer);
     return true;
     }
+
+  removeObserver(observer){
+    this.observers.remove(observer);
+  }
 
   clearObservers(){
     this.observer = [];
@@ -28,20 +35,15 @@ class Observable {
   setChanged(){
     this.state = true;
   }
-
-  removeObserver(observer){
-    this.observers.remove(observer);
-  }
   
 }
 
+//interface d'un observer (abstraite)
 class Observer {
   constructor() {
-
   }
 
   //called when observable changes
-  update(observable, object){
-    
+  update(observable, object){ 
   };
 }
