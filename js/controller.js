@@ -11,43 +11,72 @@ class PrintConsole extends Observer {
 
 class UpdateView extends Observer {
 
-	constructor(view) {
+	constructor(view, mediator) {
 		super();
 		this.view = view;
+		this.mediator = mediator;
 	}
 
 	update(observable, object) {
-		//update les affichage liés à la valeur entière
-		this.view.numberDisplay.value = observable.number;
-		this.view.slider.value = observable.number;
-		//update les affichage liés à la valeur du disabled
-		this.view.plusButton.disabled = (observable.disabled || observable.plusDisabled);
-		this.view.minusButton.disabled = (observable.disabled || observable.minusDisabled);
-		this.view.numberDisplay.disabled = observable.disabled;
-		//console.log(observable.disabled,observable.plusDisabled,observable.minusDisabled)
+		this.mediator.mediate(observable, object);
 	}
 }
 
 class Controller {
 
-	constructor(model) {
+	constructor(modelEntier) {
 
 		// creation of the view for the website
 		this.view = new View();
-		this.model = model;
+		this.modelEntier = modelEntier;
+
+		// creation of the mediator
+		this.mediator = new Mediator(this.view);
 
 		// update, creation of the observers objects
-		let printConsole = new PrintConsole();
-		this.model.addObserver(printConsole);
-		let updateView = new UpdateView(this.view);
-		this.model.addObserver(updateView);
+		let printConsole = new PrintConsole(this.view);
+		this.modelEntier.addObserver(printConsole);
+		let updateView = new UpdateView(this.view,this.mediator);
+		this.modelEntier.addObserver(updateView);
 
 		//  action, linking the html events to the observable
-		this.view.plusButton.addEventListener('click', () => this.model.plus())
-		this.view.minusButton.addEventListener('click', () => this.model.minus())
-		this.view.numberDisplay.addEventListener('input', (event) => this.model.numberSet(parseInt(event.target.value)))
-		this.view.slider.addEventListener('input', (event) => this.model.numberSet(parseInt(event.target.value)))
-		this.view.disableButton.addEventListener('click', () => this.model.disable())
+		this.view.plusButton.addEventListener('click', () => this.modelEntier.plus())
+		this.view.minusButton.addEventListener('click', () => this.modelEntier.minus())
+		this.view.numberDisplay.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
+		this.view.slider.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
+		this.view.disableButton.addEventListener('click', () => this.mediator.disable())
 
 	}
+}
+
+class Mediator{
+
+	constructor(view) {
+		this.modelActivation = new ModelActivation;
+		this.view = view;
+	}
+
+	mediate(observable, object) {
+		this.update(observable, object)
+	}
+
+	disable(){
+		this.modelActivation.disable();
+		this.view.plusButton.disabled = this.modelActivation.disabled;
+		this.view.minusButton.disabled = this.modelActivation.disabled;
+		this.view.numberDisplay.disabled = this.modelActivation.disabled;
+		this.view.slider.disabled = this.modelActivation.disabled;
+	}
+
+	update(observable, object) {
+		//update les affichage liés à la valeur du nombre et de
+		this.view.numberDisplay.value = observable.number;
+		this.view.slider.value = observable.number;
+		if (!this.modelActivation.disabled) {
+			this.view.plusButton.disabled = (observable.number == 10);
+			this.view.minusButton.disabled = (observable.number == 0);
+		}
+	}
+
+
 }

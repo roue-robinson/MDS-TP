@@ -9,7 +9,7 @@ class View {
 
     //button to disable the modification of the number
     this.disableButton = document.createElement('button');
-    this.disableButton.textContent = 'disable';
+    this.disableButton.textContent = $.i18n('disableButtonText');
     this.disableButton.id = 'disable';
     this.div.appendChild(this.disableButton);
 
@@ -27,7 +27,9 @@ class View {
 
     //textefield to display and enter the number
     this.numberDisplay = document.createElement('input');
-    this.numberDisplay.type = 'text';
+    this.numberDisplay.type = 'number';
+    this.numberDisplay.max = '10';
+    this.numberDisplay.min = '0';
     this.numberDisplay.id = 'number';
     this.numberDisplay.value = 5;
     this.div.appendChild(this.numberDisplay);
@@ -47,6 +49,7 @@ class View {
 
     this.sliderContainer.appendChild(this.slider);
     this.div.appendChild(this.sliderContainer);
+    //https://stackoverflow.com/questions/69490604/html-input-range-type-becomes-un-usable-by-drag-action-if-highlighted-in-chrome
     
 
     let nodeParent = document.querySelector('#outer');

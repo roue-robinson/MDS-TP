@@ -1,23 +1,28 @@
 
 
-/*
+
 // define the dictionary
 $.i18n().load( {
     'fr' : {
-      'key' : 'value',
+      'disableButtonText' : 'désactiver',
     },
     'en': {
+      'disableButtonText' : 'disable',
     }
 })
 
 // set the locale
 $.i18n( {
-    locale: 'en'
+    locale: 'fr'
     //locale : navigator.language
 } );
-*/
 
+console.log($.i18n('key'))
+const date = new Date();
+document.querySelector('#date').innerText = date.toLocaleDateString($.i18n().locale);
 
-let model = new ModelInteger();
+let model1 = new ModelInteger();
+let model2 = new ModelInteger();
 
-let controler = new SuperController(model);
+//let controler = new Controller(model1,ModelActivation);
+let controler = new SuperController(model1,model2);
