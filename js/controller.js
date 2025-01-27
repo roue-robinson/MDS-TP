@@ -72,7 +72,12 @@ class Mediator{
 	}
 
 	mediateView(observable, object) {
-		this.update(observable, object)
+		if (!this.modelActivation.disabled){
+			this.update(observable, object);
+		}
+		else{
+			this.update(observable, object); //pôur garder la vue en live et voir les changements d'un model sur l'autre
+		}
 	}
 
 	mediateDisable(){
