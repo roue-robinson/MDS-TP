@@ -18,7 +18,19 @@ class UpdateView extends Observer {
 	}
 
 	update(observable, object) {
-		this.mediator.mediate(observable, object);
+		this.mediator.mediateView(observable, object);
+	}
+}
+
+class UpdateViewDisabling extends Observer {
+	constructor(view, mediator) {
+		super();
+		this.view = view;
+		this.mediator = mediator;
+	}
+
+	update(observable, object) {
+		this.mediator.mediateDisable(observable, object);
 	}
 }
 
@@ -29,39 +41,42 @@ class Controller {
 		// creation of the view for the website
 		this.view = new View();
 		this.modelEntier = modelEntier;
+		this.modelActivation = new ModelActivation(this.view);
 
 		// creation of the mediator
-		this.mediator = new Mediator(this.view);
+		this.mediator = new Mediator(this.view, this.modelActivation);
 
 		// update, creation of the observers objects
-		let printConsole = new PrintConsole(this.view);
-		this.modelEntier.addObserver(printConsole);
-		let updateView = new UpdateView(this.view,this.mediator);
+		// let printConsole = new PrintConsole(this.view);
+		// this.modelEntier.addObserver(printConsole);
+		let updateView = new UpdateView(this.view, this.mediator);
 		this.modelEntier.addObserver(updateView);
+		let updateViewDisabling = new UpdateViewDisabling(this.view, this.mediator);
+		this.modelActivation.addObserver(updateViewDisabling);
 
 		//  action, linking the html events to the observable
 		this.view.plusButton.addEventListener('click', () => this.modelEntier.plus())
 		this.view.minusButton.addEventListener('click', () => this.modelEntier.minus())
 		this.view.numberDisplay.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
 		this.view.slider.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
-		this.view.disableButton.addEventListener('click', () => this.mediator.disable())
+		this.view.disableButton.addEventListener('click', () => this.modelActivation.disable())
 
 	}
 }
 
 class Mediator{
 
-	constructor(view) {
-		this.modelActivation = new ModelActivation;
+	constructor(view,modelActivation) {
 		this.view = view;
+		this.modelActivation = modelActivation
 	}
 
-	mediate(observable, object) {
+	mediateView(observable, object) {
 		this.update(observable, object)
 	}
 
-	disable(){
-		this.modelActivation.disable();
+	mediateDisable(){
+		//update les affichage liés à la valeur de l'activation Model
 		this.view.plusButton.disabled = this.modelActivation.disabled;
 		this.view.minusButton.disabled = this.modelActivation.disabled;
 		this.view.numberDisplay.disabled = this.modelActivation.disabled;
@@ -69,7 +84,7 @@ class Mediator{
 	}
 
 	update(observable, object) {
-		//update les affichage liés à la valeur du nombre et de
+		//update les affichage liés à la valeur du nombre
 		this.view.numberDisplay.value = observable.number;
 		this.view.slider.value = observable.number;
 		if (!this.modelActivation.disabled) {
