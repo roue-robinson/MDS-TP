@@ -24,7 +24,7 @@ class ModelInteger extends Observable {
 
     //function called when trying to change the number
     numberSet(number) {
-        if ((0 <= number <= 10) && (this.number != number)) {
+        if ((0 <= number && number <= 10) && (this.number != number)) {
             this.number = number;
             this.setChanged();
             this.notifyObservers();

@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link rel="shortcut icon" href="#"> <!-- fix shortcut icon console error -->
-    <meta charset="utf-8">
-    <title>TP1</title>
-    <link rel="stylesheet" href="css/styles.css">
 
-      <script defer src="js/jquery/jquery-3.4.1.min.js"></script>
+<head>
+  <link rel="shortcut icon" href="#"> <!-- fix shortcut icon console error -->
+  <meta charset="utf-8">
+  <title>TP1</title>
+  <link rel="stylesheet" href="css/styles.css">
 
-      <script defer src="js/jquery.i18n/libs/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.messagestore.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.fallbacks.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.language.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.parser.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.emitter.js"></script>
-      <script defer src="js/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
-      <script defer src="js/jquery.i18n/languages/bs.js"></script>
-      <script defer src="js/jquery.i18n/languages/dsb.js"></script>
-      <script defer src="js/jquery.i18n/languages/fi.js"></script>
-      <script defer src="js/jquery.i18n/languages/ga.js"></script>
-      <script defer src="js/jquery.i18n/languages/he.js"></script>
-      <script defer src="js/jquery.i18n/languages/hsb.js"></script>
-      <script defer src="js/jquery.i18n/languages/hu.js"></script>
-      <script defer src="js/jquery.i18n/languages/hy.js"></script>
-      <script defer src="js/jquery.i18n/languages/la.js"></script>
-      <script defer src="js/jquery.i18n/languages/ml.js"></script>
-      <script defer src="js/jquery.i18n/languages/os.js"></script>
-      <script defer src="js/jquery.i18n/languages/ru.js"></script>
-      <script defer src="js/jquery.i18n/languages/sl.js"></script>
-      <script defer src="js/jquery.i18n/languages/uk.js"></script>
+  <script defer src="js/jquery/jquery-3.4.1.min.js"></script>
 
-      <script defer src="js/utils.js"></script>
-      <script defer src="js/model.js"></script>
-      <script defer src="js/view.js"></script>
-      <script defer src="js/controller.js"></script>
-      <script defer src="js/superController.js"></script>
-      <script defer src="js/main.js"></script>
+  <script defer src="js/jquery.i18n/libs/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.messagestore.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.language.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.parser.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.emitter.js"></script>
+  <script defer src="js/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+  <script defer src="js/jquery.i18n/languages/bs.js"></script>
+  <script defer src="js/jquery.i18n/languages/dsb.js"></script>
+  <script defer src="js/jquery.i18n/languages/fi.js"></script>
+  <script defer src="js/jquery.i18n/languages/ga.js"></script>
+  <script defer src="js/jquery.i18n/languages/he.js"></script>
+  <script defer src="js/jquery.i18n/languages/hsb.js"></script>
+  <script defer src="js/jquery.i18n/languages/hu.js"></script>
+  <script defer src="js/jquery.i18n/languages/hy.js"></script>
+  <script defer src="js/jquery.i18n/languages/la.js"></script>
+  <script defer src="js/jquery.i18n/languages/ml.js"></script>
+  <script defer src="js/jquery.i18n/languages/os.js"></script>
+  <script defer src="js/jquery.i18n/languages/ru.js"></script>
+  <script defer src="js/jquery.i18n/languages/sl.js"></script>
+  <script defer src="js/jquery.i18n/languages/uk.js"></script>
+  <!-- for the right click menu icons -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-  </head>
-  <body>
-    <div id="outer">
-      <div class="top">
-        <div id="textTitle">
-          <h2 id="date"></h2>
-          <h2 id="title"> TP IHM </h2>
-          
-        </div>
+</head>
+
+<body>
+    <div class="">
+      <ul class="menu">
+        <li class="item" id="plusMenu">
+          <i class="uil uil-plus" ></i>
+          <span>Plus</span>
+        </li>
+        <li class="item" id="minusMenu">
+          <i class="uil uil-minus"></i>
+          <span>Minus</span>
+        </li>
+        <li class="item" id="lockMenu">
+          <i class="uil uil-lock"></i>
+          <span>Lock</span>
+        </li>
+      </ul>
+    </div>
+  <script src="js/menuScript.js"></script>
+  <div id="outer">
+    <div class="top">
+      <div id="textTitle">
+        <h2 id="date"></h2>
+        <h2 id="title"> TP IHM </h2>
+
       </div>
     </div>
-  </body>
+  </div>
+  <!-- div pour le menu déroulant -->
+
+</body>
+<script defer src="js/utils.js"></script>
+<script defer src="js/model.js"></script>
+<script defer src="js/view.js"></script>
+<script defer src="js/controller.js"></script>
+<script defer src="js/superController.js"></script>
+<script defer src="js/main.js"></script>
 </html>

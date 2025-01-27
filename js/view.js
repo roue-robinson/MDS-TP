@@ -12,18 +12,21 @@ class View {
     this.disableButton.textContent = $.i18n('disableButtonText');
     this.disableButton.id = 'disable';
     this.div.appendChild(this.disableButton);
+    this.lockMenu = document.getElementById("lockMenu");
 
     //button to substract 1 from the number
     this.minusButton = document.createElement('button');
     this.minusButton.textContent = '-';
     this.disableButton.id = 'minus';
     this.div.appendChild(this.minusButton);
+    this.minusMenu = document.getElementById("minusMenu");
 
     //button to add 1 to the number
     this.plusButton = document.createElement('button');
     this.plusButton.textContent = '+';
     this.disableButton.id = 'plus';
     this.div.appendChild(this.plusButton);
+    this.plusMenu = document.getElementById("plusMenu");
 
     //textefield to display and enter the number
     this.numberDisplay = document.createElement('input');

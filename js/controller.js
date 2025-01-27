@@ -47,8 +47,8 @@ class Controller {
 		this.mediator = new Mediator(this.view, this.modelActivation);
 
 		// update, creation of the observers objects
-		// let printConsole = new PrintConsole(this.view);
-		// this.modelEntier.addObserver(printConsole);
+		let printConsole = new PrintConsole(this.view);
+		this.modelEntier.addObserver(printConsole);
 		let updateView = new UpdateView(this.view, this.mediator);
 		this.modelEntier.addObserver(updateView);
 		let updateViewDisabling = new UpdateViewDisabling(this.view, this.mediator);
@@ -60,6 +60,15 @@ class Controller {
 		this.view.numberDisplay.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
 		this.view.slider.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
 		this.view.disableButton.addEventListener('click', () => this.modelActivation.disable())
+
+		//right click menu
+		let plusMenu = document.getElementById("plusMenu");
+		plusMenu.addEventListener('click', () => this.modelEntier.plus())
+		let minusMenu = document.getElementById("minusMenu");
+		minusMenu.addEventListener('click', () => this.modelEntier.minus())
+		let lockMenu = document.getElementById("lockMenu");
+		lockMenu.addEventListener('click', () => this.modelActivation.disable())
+		console.log(plusMenu, minusMenu, lockMenu);
 
 	}
 }
@@ -83,9 +92,20 @@ class Mediator{
 	mediateDisable(){
 		//update les affichage liés à la valeur de l'activation Model
 		this.view.plusButton.disabled = this.modelActivation.disabled;
+		this.view.plusMenu.setAttribute('disabled', this.modelActivation.disabled);
+		console.log("debug");
 		this.view.minusButton.disabled = this.modelActivation.disabled;
+		this.view.minusMenu.disabled  = this.modelActivation.disabled;
 		this.view.numberDisplay.disabled = this.modelActivation.disabled;
 		this.view.slider.disabled = this.modelActivation.disabled;
+		if (this.modelActivation.disabled) {
+			this.view.plusMenu.setAttribute('disabled', "");
+			this.view.minusMenu.setAttribute('disabled', "");
+		}
+		else {
+			this.view.plusMenu.removeAttribute('disabled');
+			this.view.minusMenu.removeAttribute('disabled');
+		}
 	}
 
 	update(observable, object) {
@@ -93,8 +113,22 @@ class Mediator{
 		this.view.numberDisplay.value = observable.number;
 		this.view.slider.value = observable.number;
 		if (!this.modelActivation.disabled) {
-			this.view.plusButton.disabled = (observable.number == 10);
-			this.view.minusButton.disabled = (observable.number == 0);
+
+			this.view.plusButton.disabled = (observable.number >= 10);
+			if (observable.number >= 10) {
+				this.view.plusMenu.setAttribute('disabled', "");
+			}
+			else {
+				this.view.plusMenu.removeAttribute('disabled');
+			}
+			
+			this.view.minusButton.disabled = (observable.number <= 0);
+			if (observable.number <= 0) {
+				this.view.minusMenu.setAttribute('disabled', "");
+			}
+			else {
+				this.view.minusMenu.removeAttribute('disabled');
+			}
 		}
 	}
 
