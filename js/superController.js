@@ -7,7 +7,9 @@ class UpdateSynchronize extends Observer {
 	}
 
 	update(observable, object) {
-		this.controller.modelEntier.numberSet(10-observable.number);
+		if (this.controller.modelEntier.number !== (10-observable.number)){
+			this.controller.modelEntier.numberSet(10-observable.number);
+		}
 		//this.controller.model.disabledSet(observable.disabled);
 	}
 }

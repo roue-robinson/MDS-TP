@@ -24,5 +24,5 @@ document.querySelector('#date').innerText = date.toLocaleDateString($.i18n().loc
 let model1 = new ModelInteger();
 let model2 = new ModelInteger();
 
-let controler1 = new Controller(model1);
-//let controler2 = new SuperController(model1, model2);
+//let controler1 = new Controller(model1);
+let controler2 = new SuperController(model1, model2);

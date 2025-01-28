@@ -57,7 +57,7 @@ class Controller {
 		//  action, linking the html events to the observable
 		this.view.plusButton.addEventListener('click', () => this.modelEntier.plus())
 		this.view.minusButton.addEventListener('click', () => this.modelEntier.minus())
-		this.view.numberDisplay.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
+		this.view.numberDisplay.addEventListener('change', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
 		this.view.slider.addEventListener('input', (event) => this.modelEntier.numberSet(parseInt(event.target.value)))
 		this.view.disableButton.addEventListener('click', () => this.modelActivation.disable())
 
