@@ -12,21 +12,21 @@ class View {
     this.disableButton.textContent = $.i18n('disableButtonText');
     this.disableButton.id = 'disable';
     this.div.appendChild(this.disableButton);
-    this.lockMenu = document.getElementById("lockMenu");
+    //this.lockMenu = document.getElementById("lockMenu");
 
     //button to substract 1 from the number
     this.minusButton = document.createElement('button');
     this.minusButton.textContent = '-';
     this.disableButton.id = 'minus';
     this.div.appendChild(this.minusButton);
-    this.minusMenu = document.getElementById("minusMenu");
+    //this.minusMenu = document.getElementById("minusMenu");
 
     //button to add 1 to the number
     this.plusButton = document.createElement('button');
     this.plusButton.textContent = '+';
     this.disableButton.id = 'plus';
     this.div.appendChild(this.plusButton);
-    this.plusMenu = document.getElementById("plusMenu");
+    //this.plusMenu = document.getElementById("plusMenu");
 
     //textefield to display and enter the number
     this.numberDisplay = document.createElement('input');
@@ -53,11 +53,65 @@ class View {
     this.sliderContainer.appendChild(this.slider);
     this.div.appendChild(this.sliderContainer);
     //https://stackoverflow.com/questions/69490604/html-input-range-type-becomes-un-usable-by-drag-action-if-highlighted-in-chrome
-    
 
     let nodeParent = document.querySelector('#outer');
     nodeParent.appendChild(this.div);
+
+    //context menu (right click)
+
+    //plusButton
+    this.plusMenu = document.createElement('li');
+    this.plusMenu.className = "item";
+    this.plusMenu.id = "plusMenu";
+
+    let plusSign = document.createElement('i');
+    plusSign.className = "uil uil-plus";
+    this.plusMenu.appendChild(plusSign);
+
+    let plusText = document.createElement('span');
+    plusText.textContent = "Plus";
+    this.plusMenu.appendChild(plusText);
+
+    //minusButton
+    this.minusMenu = document.createElement('li');
+    this.minusMenu.className = "item";
+    this.minusMenu.id = "minusMenu";
+    
+    let minusSign = document.createElement('i');
+    minusSign.className = "uil uil-minus";
+    this.minusMenu.appendChild(minusSign);
+    
+    let minusText = document.createElement('span');
+    minusText.textContent = "Minus";
+    this.minusMenu.appendChild(minusText);
+
+    //LockButton
+    this.lockMenu = document.createElement('li');
+    this.lockMenu.className = "item";
+    this.lockMenu.id = "lockMenu";
+
+    let lockSign = document.createElement('i');
+    lockSign.className = "uil uil-lock";
+    this.lockMenu.appendChild(lockSign);
+    
+    let lockText = document.createElement('span');
+    lockText.textContent = "Lock";
+    this.lockMenu.appendChild(lockText);
+    
+    //adding the buttons to the html
+    this.menu = document.querySelector('.menu');
+    this.menu.appendChild(this.plusMenu);
+    this.menu.appendChild(this.minusMenu);
+    this.menu.appendChild(this.lockMenu);
+
+  }
+}
+
+class ViewComp {
+  div;
+
+  constructor(parentView) {
+    this.div = document.createElement('div');
   }
 
-  
 }

@@ -1,7 +1,7 @@
 //menu right click
+//right clicking makes the menu pop up
 const contextMenu = document.querySelector(".menu")
 document.addEventListener("contextmenu", e => {
-  console.log("right click pressed");
   e.preventDefault();
 
   let x = e.offsetX, y = e.offsetY;
@@ -10,35 +10,11 @@ document.addEventListener("contextmenu", e => {
   contextMenu.style.visibility = "visible";
 })
 
-//document.addEventListener("click", () => contextMenu.style.visibility = "hidden")
-let plusMenu = document.getElementById("plusMenu");
-plusMenu.addEventListener('click', () => {
-  if (!plusMenu.disabled) {
-    plusMenu.classList.toggle('active');
-    setTimeout(() => {
-      plusMenu.classList.remove('active');
-    }, 100);
+//left clicking outside the menu makes it disappear
+document.addEventListener("click", (event) => {
+  // Hide the menu when clicking outside
+  if (!contextMenu.contains(event.target)) {
+    contextMenu.style.visibility = "";
   }
 })
 
-let minusMenu = document.getElementById("minusMenu");
-minusMenu.addEventListener('click', () => {
-  if (!minusMenu.disabled) {
-    minusMenu.classList.toggle('active');
-    setTimeout(() => {
-      minusMenu.classList.remove('active');
-    }, 100);
-  }
-})
-
-let lockMenu = document.getElementById("lockMenu");
-lockMenu.addEventListener('click', () => {
-  if (!lockMenu.disabled) {
-    lockMenu.classList.toggle('active');
-    setTimeout(() => {
-      lockMenu.classList.remove('active');
-    }, 100);
-  }
-})
-
-console.log(plusMenu, minusMenu, lockMenu);

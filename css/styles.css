@@ -79,7 +79,7 @@ body {
 
   align-items: center;
   justify-content: center;
-  width:5%;
+  width:7%;
   background-color: #8EE4AF;
   border-radius: 5%;
   box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.5);
@@ -107,6 +107,10 @@ body {
   &.active{
     transform: scale(0.90);
   }
+}
+
+.disabled{
+  background-color: #2a4133; 
 }
 
 /*
